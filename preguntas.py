@@ -11,20 +11,38 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
+import csv
 
+with open('data.csv') as csvfile:
+    csvreader = csv.reader(csvfile)
+    data = []
+    for row in csvreader:
+        data.append(row)
 
 def pregunta_01():
-    """
+  columna2 = [int(row[1]) for row in data]
+  suma = sum(columna2)
+  return suma
+"""
     Retorne la suma de la segunda columna.
 
+    
     Rta/
     214
 
     """
-    return
+"return"
 
 
 def pregunta_02():
+    columna1 = [row[0] for row in data]
+    conteos = {}
+    for letra in columna1:
+        if letra in conteos:
+            conteos[letra] += 1
+        else:
+            conteos[letra] = 1
+    return [(letra, conteos[letra]) for letra in sorted(conteos)]
     """
     Retorne la cantidad de registros por cada letra de la primera columna como la lista
     de tuplas (letra, cantidad), ordendas alfabéticamente.
@@ -39,10 +57,21 @@ def pregunta_02():
     ]
 
     """
-    return
+
+
 
 
 def pregunta_03():
+    result_dict = {}
+
+    for row in data:
+        if row[0] in result_dict:
+            result_dict[row[0]] += int(row[1])
+        else:
+            result_dict[row[0]] = int(row[1])
+    result = list(result_dict.items())
+    result = sorted(result, key=lambda x: x[0])
+    return result
     """
     Retorne la suma de la columna 2 por cada letra de la primera columna como una lista
     de tuplas (letra, suma) ordendas alfabeticamente.
@@ -61,6 +90,18 @@ def pregunta_03():
 
 
 def pregunta_04():
+
+    from collections import defaultdict
+
+    counts = defaultdict(int)
+
+    for row in data:
+        year, month, day = row[2].split('-')
+        counts[month] += 1
+
+    result = sorted(counts.items())
+    print(result)
+
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la cantidad de
     registros por cada mes, tal como se muestra a continuación.
@@ -86,6 +127,19 @@ def pregunta_04():
 
 
 def pregunta_05():
+    from collections import defaultdict
+    grupos = defaultdict(list)
+    
+    for tupla in data:
+        letra, numero = tupla[:2]
+        grupos[letra].append(numero)
+    
+    resultado = []
+    for letra, numeros in grupos.items():
+        resultado.append((letra, max(numeros), min(numeros)))
+        resultado_ordenado = sorted(resultado, key=lambda tupla: tupla[0])
+    return resultado_ordenado
+
     """
     Retorne una lista de tuplas con el valor maximo y minimo de la columna 2 por cada
     letra de la columa 1.
@@ -104,6 +158,33 @@ def pregunta_05():
 
 
 def pregunta_06():
+    grupos = {}
+    
+    # procesar cada fila de la lista
+    for fila in data:
+        clave1 = fila[0]
+        clave2 = fila[1]
+        clave3 = str(fila[2])
+        claves = fila[4].split(',')
+        
+        # procesar cada clave en la fila
+        for cadena in claves:
+            # separar clave y valor de la cadena
+            clave, valor = cadena.split(':')
+            valor = int(valor)
+            
+            # agregar valor al diccionario para la clave correspondiente
+            if clave in grupos:
+                grupos[clave].append(valor)
+            else:
+                grupos[clave] = [valor]
+    
+    # calcular el valor mínimo y máximo para cada grupo de valores
+    resultado = []
+    for clave, valores in sorted(grupos.items()):
+        resultado.append((clave, min(valores), max(valores)))
+    
+    return resultado
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
     una clave y el valor despues del caracter `:` corresponde al valor asociado a la

@@ -14,13 +14,14 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 def pregunta_01():
-    import csv
-
-    with open('data.csv') as csvfile:
-        csvreader = csv.reader(csvfile)
-        data = []
-        for row in csvreader:
-            data.append(row)
+    archivo = open('data.csv')
+    lector = archivo.readlines()
+    data = []
+    for line in lector:
+        line = line.replace('\t', ',')
+        line = line.strip().split('\n')
+    for subline in line:
+        data.append(subline.split(','))
 
     columna2 = [int(row[1]) for row in data]
     suma = sum(columna2)

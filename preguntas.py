@@ -20,8 +20,8 @@ def pregunta_01():
     for line in lector:
         line = line.replace('\t', ',')
         line = line.strip().split('\n')
-    for subline in line:
-        data.append(subline.split(','))
+        for subline in line:
+            data.append(subline.split(','))
 
     columna2 = [int(row[1]) for row in data]
     suma = sum(columna2)

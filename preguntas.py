@@ -11,18 +11,23 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
-import csv
 
-with open('data.csv') as csvfile:
-    csvreader = csv.reader(csvfile)
-    data = []
-    for row in csvreader:
-        data.append(row)
 
 def pregunta_01():
-  columna2 = [int(row[1]) for row in data]
-  suma = sum(columna2)
-  return suma
+    import csv
+
+    with open('data.csv') as csvfile:
+        csvreader = csv.reader(csvfile)
+        data = []
+        for row in csvreader:
+            data.append(row)
+
+    columna2 = [int(row[1]) for row in data]
+    suma = sum(columna2)
+    
+    return suma
+
+
 """
     Retorne la suma de la segunda columna.
 
@@ -35,6 +40,16 @@ def pregunta_01():
 
 
 def pregunta_02():
+    import csv
+
+    with open('data.csv') as csvfile:
+        csvreader = csv.reader(csvfile)
+        data = []
+        for row in csvreader:
+            data.append(row)
+
+
+
     columna1 = [row[0] for row in data]
     conteos = {}
     for letra in columna1:
@@ -62,6 +77,14 @@ def pregunta_02():
 
 
 def pregunta_03():
+    import csv
+
+    with open('data.csv') as csvfile:
+        csvreader = csv.reader(csvfile)
+        data = []
+        for row in csvreader:
+            data.append(row)
+
     result_dict = {}
 
     for row in data:
@@ -90,6 +113,14 @@ def pregunta_03():
 
 
 def pregunta_04():
+    import csv
+
+        
+    with open('data.csv') as csvfile:
+       csvreader = csv.reader(csvfile)
+       data = []
+       for row in csvreader:
+           data.append(row)
 
     from collections import defaultdict
 
@@ -98,11 +129,10 @@ def pregunta_04():
     for row in data:
         year, month, day = row[2].split('-')
         counts[month] += 1
-
     result = sorted(counts.items())
-    print(result)
+    return(result)
 
-    """
+"""
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la cantidad de
     registros por cada mes, tal como se muestra a continuación.
 
@@ -123,10 +153,16 @@ def pregunta_04():
     ]
 
     """
-    return
 
 
 def pregunta_05():
+    import csv
+
+    with open('data.csv') as csvfile:
+        csvreader = csv.reader(csvfile)
+        data = []
+        for row in csvreader:
+            data.append(row)
     from collections import defaultdict
     grupos = defaultdict(list)
     
@@ -158,6 +194,13 @@ def pregunta_05():
 
 
 def pregunta_06():
+    import csv
+
+    with open('data.csv') as csvfile:
+        csvreader = csv.reader(csvfile)
+        data = []
+        for row in csvreader:
+            data.append(row)
     grupos = {}
     
     # procesar cada fila de la lista
@@ -210,6 +253,12 @@ def pregunta_06():
 
 
 def pregunta_07():
+    import csv
+    with open('data.csv') as csvfile:
+        csvreader = csv.reader(csvfile)
+        data = []
+        for row in csvreader:
+            data.append(row)
     """
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla contiene un
     valor posible de la columna 2 y una lista con todas las letras asociadas (columna 1)
@@ -234,6 +283,12 @@ def pregunta_07():
 
 
 def pregunta_08():
+    import csv
+    with open('data.csv') as csvfile:
+        csvreader = csv.reader(csvfile)
+        data = []
+        for row in csvreader:
+            data.append(row)
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla contiene  el valor
     de la segunda columna; la segunda parte de la tupla es una lista con las letras
@@ -259,6 +314,13 @@ def pregunta_08():
 
 
 def pregunta_09():
+    import csv
+    with open('data.csv') as csvfile:
+        csvreader = csv.reader(csvfile)
+        data = []
+        for row in csvreader:
+            data.append(row)
+    
     """
     Retorne un diccionario que contenga la cantidad de registros en que aparece cada
     clave de la columna 5.
@@ -282,6 +344,13 @@ def pregunta_09():
 
 
 def pregunta_10():
+    import csv
+
+    with open('data.csv') as csvfile:
+        csvreader = csv.reader(csvfile)
+        data = []
+        for row in csvreader:
+            data.append(row)
     """
     Retorne una lista de tuplas contengan por cada tupla, la letra de la columna 1 y la
     cantidad de elementos de las columnas 4 y 5.
@@ -303,6 +372,13 @@ def pregunta_10():
 
 
 def pregunta_11():
+    import csv
+    
+    with open('data.csv') as csvfile:
+        csvreader = csv.reader(csvfile)
+        data = []
+        for row in csvreader:
+            data.append(row)
     """
     Retorne un diccionario que contengan la suma de la columna 2 para cada letra de la
     columna 4, ordenadas alfabeticamente.

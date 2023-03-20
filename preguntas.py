@@ -52,8 +52,6 @@ def pregunta_02():
         for subline in line:
             data.append(subline.split(','))
 
-
-
     columna1 = [row[0] for row in data]
     conteos = {}
     for letra in columna1:
@@ -172,6 +170,7 @@ def pregunta_05():
         line = line.strip().split('\n')
         for subline in line:
             data.append(subline.split(','))
+
     from collections import defaultdict
     grupos = defaultdict(list)
     
@@ -214,31 +213,26 @@ def pregunta_06():
             data.append(subline.split(','))
     grupos = {}
     
-    # procesar cada fila de la lista
     for fila in data:
         clave1 = fila[0]
         clave2 = fila[1]
         clave3 = str(fila[2])
         claves = fila[4].split(',')
-        
-        # procesar cada clave en la fila
+
         for cadena in claves:
-            # separar clave y valor de la cadena
             clave, valor = cadena.split(':')
             valor = int(valor)
             
-            # agregar valor al diccionario para la clave correspondiente
             if clave in grupos:
                 grupos[clave].append(valor)
             else:
                 grupos[clave] = [valor]
     
-    # calcular el valor mínimo y máximo para cada grupo de valores
-    resultado = []
-    for clave, valores in sorted(grupos.items()):
-        resultado.append((clave, min(valores), max(valores)))
-    
-    return resultado
+        resultado = []
+        for clave, valores in sorted(grupos.items()):
+            resultado.append((clave, min(valores), max(valores)))
+
+        return resultado
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
     una clave y el valor despues del caracter `:` corresponde al valor asociado a la
@@ -322,9 +316,9 @@ def pregunta_08():
         letra = sublista[0]
         numero = int(sublista[1])
         if numero in numeros_por_letra:
-            numeros_por_letra[numero].add(letra)  # Utiliza un conjunto en lugar de una lista
+            numeros_por_letra[numero].add(letra)
         else:
-            numeros_por_letra[numero] = {letra}  # Utiliza un conjunto en lugar de una lista
+            numeros_por_letra[numero] = {letra}
 
     return numeros_por_letra
     """
@@ -363,12 +357,12 @@ def pregunta_09():
     clave_count = {}
 
     for sublista in data:
-        clave_string = sublista[4]  # Obtiene la cadena de la columna 5
-        pares_clave_valor = clave_string.split(',')  # Divide la cadena en pares clave-valor
+        clave_string = sublista[4]
+        pares_clave_valor = clave_string.split(',')
         for par in pares_clave_valor:
-            clave = par.split(':')[0]  # Obtiene la clave
+            clave = par.split(':')[0]
             if clave in clave_count:
-                clave_count[clave] += 1  # Incrementa el contador si la clave ya existe
+                clave_count[clave] += 1
             else:
                 clave_count[clave] = 1
     
@@ -505,4 +499,14 @@ def pregunta_12():
     }
 
     """
-    return
+
+
+
+
+
+
+
+
+
+
+

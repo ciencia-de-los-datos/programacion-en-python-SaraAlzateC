@@ -113,7 +113,6 @@ def pregunta_03():
     ]
 
     """
-    return
 
 
 def pregunta_04():
@@ -135,6 +134,7 @@ def pregunta_04():
         year, month, day = row[2].split('-')
         counts[month] += 1
     result = sorted(counts.items())
+
     return(result)
 
 """
@@ -198,7 +198,6 @@ def pregunta_05():
     ]
 
     """
-    return
 
 
 def pregunta_06():
@@ -229,10 +228,10 @@ def pregunta_06():
                 grupos[clave] = [valor]
     
         resultado = []
-        for clave, valores in sorted(grupos.items()):
-            resultado.append((clave, min(valores), max(valores)))
+    for clave, valores in sorted(grupos.items()):
+        resultado.append((clave, min(valores), max(valores)))
 
-        return resultado
+    return resultado
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
     una clave y el valor despues del caracter `:` corresponde al valor asociado a la

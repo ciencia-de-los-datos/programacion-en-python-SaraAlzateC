@@ -254,16 +254,14 @@ def pregunta_07():
         data.append(fila)
 
     numeros_por_letra = {}
-
     for sublista in data:
-      letra = sublista[0]
-      numero = int(sublista[1])
-      if numero in numeros_por_letra:
-        numeros_por_letra[numero].append(letra)
-      else:
-        numeros_por_letra[numero] = [letra]
-    numeros_por_letra= dict(sorted(numeros_por_letra.items(), key=lambda item: item[0]))
-
+        letra = sublista[0]
+        numero = int(sublista[1])
+        if numero in numeros_por_letra:
+            numeros_por_letra[numero].append(letra)
+        else:
+            numeros_por_letra[numero] = [letra]
+    numeros_por_letra = sorted(numeros_por_letra.items(), key=lambda x: x[0])
     return numeros_por_letra
 
     """
@@ -297,7 +295,6 @@ def pregunta_08():
         data.append(fila)
 
     numeros_por_letra = {}
-
     for sublista in data:
         letra = sublista[0]
         numero = int(sublista[1])
@@ -305,7 +302,7 @@ def pregunta_08():
             numeros_por_letra[numero].add(letra)
         else:
             numeros_por_letra[numero] = {letra}
-    numeros_por_letra = dict(sorted(numeros_por_letra.items(), key=lambda x: x[0]))
+    numeros_por_letra = sorted(numeros_por_letra.items(), key=lambda x: x[0])
     return numeros_por_letra
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla contiene  el valor

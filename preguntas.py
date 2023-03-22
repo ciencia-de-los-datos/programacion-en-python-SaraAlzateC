@@ -299,7 +299,9 @@ def pregunta_08():
         letra = sublista[0]
         numero = int(sublista[1])
         if numero in numeros_por_letra:
-            numeros_por_letra[numero].append(letra)
+            if letra not in numeros_por_letra[numero]:
+                numeros_por_letra[numero].append(letra)
+                numeros_por_letra[numero].sort()
         else:
             numeros_por_letra[numero] = [letra]
     numeros_por_letra = sorted(numeros_por_letra.items(), key=lambda x: x[0])

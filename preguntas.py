@@ -18,11 +18,9 @@ def pregunta_01():
     lector = archivo.readlines()
     data = []
 
-    for line in lector:
-        line = line.replace('\t', ',')
-        line = line.strip().split('\n')
-        for subline in line:
-            data.append(subline.split(','))
+    for linea in lector:
+        fila = linea.strip().split('\t')
+        data.append(fila)
 
     columna2 = [int(row[1]) for row in data]
     suma = sum(columna2)
@@ -44,13 +42,12 @@ def pregunta_01():
 def pregunta_02():
     archivo = open('data.csv')
     lector = archivo.readlines()
-    data = []
 
-    for line in lector:
-        line = line.replace('\t', ',')
-        line = line.strip().split('\n')
-        for subline in line:
-            data.append(subline.split(','))
+
+    data = []
+    for linea in lector:
+        fila = linea.strip().split('\t')
+        data.append(fila)
 
     columna1 = [row[0] for row in data]
     conteos = {}
@@ -83,12 +80,9 @@ def pregunta_03():
     lector = archivo.readlines()
     data = []
 
-    for line in lector:
-        line = line.replace('\t', ',')
-        line = line.strip().split('\n')
-        for subline in line:
-            data.append(subline.split(','))
-
+    for linea in lector:
+        fila = linea.strip().split('\t')
+        data.append(fila)
     result_dict = {}
 
     for row in data:
@@ -120,11 +114,9 @@ def pregunta_04():
     lector = archivo.readlines()
     data = []
 
-    for line in lector:
-        line = line.replace('\t', ',')
-        line = line.strip().split('\n')
-        for subline in line:
-            data.append(subline.split(','))
+    for linea in lector:
+        fila = linea.strip().split('\t')
+        data.append(fila)
 
     from collections import defaultdict
 
@@ -165,24 +157,26 @@ def pregunta_05():
     lector = archivo.readlines()
     data = []
 
-    for line in lector:
-        line = line.replace('\t', ',')
-        line = line.strip().split('\n')
-        for subline in line:
-            data.append(subline.split(','))
+    for linea in lector:
+        fila = linea.strip().split('\t')
+        data.append(fila)
 
-    from collections import defaultdict
-    grupos = defaultdict(list)
-    
-    for tupla in data:
-        letra, numero = tupla[:2]
-        grupos[letra].append(numero)
+    dicc_valores = {}
+    for fila in data:
+        letra = fila[0]
+        valor = int(fila[1])
+        if letra in dicc_valores:
+            dicc_valores[letra].append(valor)
+        else:
+            dicc_valores[letra] = [valor]
     
     resultado = []
-    for letra, numeros in grupos.items():
-        resultado.append((letra, max(numeros), min(numeros)))
-        resultado_ordenado = sorted(resultado, key=lambda tupla: tupla[0])
-    return resultado_ordenado
+    for letra, valores in dicc_valores.items():
+        max_val = max(valores)
+        min_val = min(valores)
+        resultado.append((letra, max_val, min_val))
+    resultado = sorted(resultado, key=lambda x: x[0])
+    return resultado
 
     """
     Retorne una lista de tuplas con el valor maximo y minimo de la columna 2 por cada
@@ -205,32 +199,26 @@ def pregunta_06():
     lector = archivo.readlines()
     data = []
 
-    for line in lector:
-        line = line.replace('\t', ',')
-        line = line.strip().split('\n')
-        for subline in line:
-            data.append(subline.split(','))
-    grupos = {}
-    
-    for fila in data:
-        clave1 = fila[0]
-        clave2 = fila[1]
-        clave3 = str(fila[2])
-        claves = fila[4].split(',')
-
-        for cadena in claves:
-            clave, valor = cadena.split(':')
-            valor = int(valor)
+    for linea in lector:
+        fila = linea.strip().split('\t')
+        data.append(fila)
             
-            if clave in grupos:
-                grupos[clave].append(valor)
+    dicc_valores = {}
+    for fila in data:
+        valores_col5 = fila[4].split(',')
+        for valor in valores_col5:
+            clave, val = valor.split(':')
+            val = int(val)
+            if clave in dicc_valores:
+                dicc_valores[clave].append(val)
             else:
-                grupos[clave] = [valor]
-    
-        resultado = []
-    for clave, valores in sorted(grupos.items()):
-        resultado.append((clave, min(valores), max(valores)))
-
+                dicc_valores[clave] = [val]
+    resultado = []
+    for clave, valores in dicc_valores.items():
+        min_val = min(valores)
+        max_val = max(valores)
+        resultado.append((clave, min_val, max_val))
+    resultado = sorted(resultado, key=lambda x: x[0])
     return resultado
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
@@ -261,11 +249,10 @@ def pregunta_07():
     lector = archivo.readlines()
     data = []
 
-    for line in lector:
-        line = line.replace('\t', ',')
-        line = line.strip().split('\n')
-        for subline in line:
-            data.append(subline.split(','))
+    for linea in lector:
+        fila = linea.strip().split('\t')
+        data.append(fila)
+
     numeros_por_letra = {}
 
     for sublista in data:
@@ -275,6 +262,7 @@ def pregunta_07():
         numeros_por_letra[numero].append(letra)
       else:
         numeros_por_letra[numero] = [letra]
+    numeros_por_letra= dict(sorted(numeros_por_letra.items(), key=lambda item: item[0]))
 
     return numeros_por_letra
 
@@ -304,11 +292,10 @@ def pregunta_08():
     lector = archivo.readlines()
     data = []
 
-    for line in lector:
-        line = line.replace('\t', ',')
-        line = line.strip().split('\n')
-        for subline in line:
-            data.append(subline.split(','))
+    for linea in lector:
+        fila = linea.strip().split('\t')
+        data.append(fila)
+
     numeros_por_letra = {}
 
     for sublista in data:
@@ -318,7 +305,7 @@ def pregunta_08():
             numeros_por_letra[numero].add(letra)
         else:
             numeros_por_letra[numero] = {letra}
-
+    numeros_por_letra = dict(sorted(numeros_por_letra.items(), key=lambda x: x[0]))
     return numeros_por_letra
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla contiene  el valor
@@ -348,11 +335,10 @@ def pregunta_09():
     lector = archivo.readlines()
     data = []
 
-    for line in lector:
-        line = line.replace('\t', ',')
-        line = line.strip().split('\n')
-        for subline in line:
-            data.append(subline.split(','))
+    for linea in lector:
+        fila = linea.strip().split('\t')
+        data.append(fila)
+
     clave_count = {}
 
     for sublista in data:
@@ -364,8 +350,10 @@ def pregunta_09():
                 clave_count[clave] += 1
             else:
                 clave_count[clave] = 1
+        claves_ordenadas = sorted(clave_count.keys())
+        clave_count_ordenado = {clave: clave_count[clave] for clave in claves_ordenadas}
     
-    return clave_count
+    return clave_count_ordenado
     """
     Retorne un diccionario que contenga la cantidad de registros en que aparece cada
     clave de la columna 5.
@@ -392,11 +380,10 @@ def pregunta_10():
     lector = archivo.readlines()
     data = []
 
-    for line in lector:
-        line = line.replace('\t', ',')
-        line = line.strip().split('\n')
-        for subline in line:
-            data.append(subline.split(','))
+    for linea in lector:
+        fila = linea.strip().split('\t')
+        data.append(fila)
+
     resultados = []
 
     for fila in data:
@@ -430,11 +417,10 @@ def pregunta_11():
     lector = archivo.readlines()
     data = []
 
-    for line in lector:
-        line = line.replace('\t', ',')
-        line = line.strip().split('\n')
-        for subline in line:
-            data.append(subline.split(','))
+    for linea in lector:
+        fila = linea.strip().split('\t')
+        data.append(fila)
+
     conteo_letras_col4 = {}
 
     for fila in data:
@@ -444,6 +430,7 @@ def pregunta_11():
                 conteo_letras_col4[letra] += int(fila[1])
             else:
                 conteo_letras_col4[letra] = int(fila[1])
+    conteo_letras_col4 = dict(sorted(conteo_letras_col4.items(), key=lambda item: item[0]))
     return conteo_letras_col4
     """
     Retorne un diccionario que contengan la suma de la columna 2 para cada letra de la
@@ -468,11 +455,11 @@ def pregunta_12():
     archivo = open('data.csv')
     lector = archivo.readlines()
     data = []
-    for line in lector:
-        line = line.replace('\t', ',')
-        line = line.strip().split('\n')
-        for subline in line:
-            data.append(subline.split(','))
+
+    for linea in lector:
+        fila = linea.strip().split('\t')
+        data.append(fila)
+
     letra_suma_col5 = {}
     for fila in data:
         letra = fila[0]
@@ -482,7 +469,7 @@ def pregunta_12():
             letra_suma_col5[letra] += suma_col5
         else:
             letra_suma_col5[letra] = suma_col5
-
+    letra_suma_col5 = dict(sorted(letra_suma_col5.items(), key=lambda item: item[0]))
     return letra_suma_col5
     """
     Genere un diccionario que contengan como clave la columna 1 y como valor la suma de
